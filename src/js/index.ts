@@ -37,7 +37,6 @@ new Vue({
                 
             students: [
                 {id:1, firstName:"Patrick Poul", lastName:"Nielsen"}
-                {id:2, firstName:"Poul", lastName:"Nielsen"}
             ],
             
           }
