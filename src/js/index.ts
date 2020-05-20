@@ -1,18 +1,51 @@
 
-/*interface Person {
-    firstName: string;
-    lastName: string;
-}
-
-function greeter(person: Person): string {
-    return "Hello, " + person.firstName + " " + person.lastName;
-}
-let user: Person = { firstName: "John", lastName: "Doe" };
-
-let element: HTMLDivElement = <HTMLDivElement> document.getElementById("content");
-element.innerHTML = greeter(user);*/
+/*import axios, {
+    AxiosResponse,
+    AxiosError
+} from "../../node_modules/axios/index"
 interface IStudent{
     id: number;
+    firstName: string;
+    lastName: string;
+    attendancy: boolean;
+}
+interface lol{
+    id:number;
+    currentLessonTime: Date;
+}
+interface ITeacher{
+    courses:[
+        {id:number; name:string;}
+    ]
+    firstName:string;
+    lastName:string;
+    currentCourse:{
+        id:number;
+        name:string;
+        students:[
+            {id:number;firstName:string;lastName:string;attendancy:boolean;}
+        ]
+    }
+}
+interface IUserLesson{
+    id:number
+    fkusers:number
+    fklessons:number
+    checkedout:boolean
+    minutesStayed:number
+    minutesLate:number
+}
+interface ICourse{
+    id:number
+    name:string
+    fkusers:number
+}
+let baseUrl: string = "https://studinapifinal.azurewebsites.net/api/";
+
+let buttonwrap: HTMLDivElement = <HTMLDivElement> document.getElementById("buttonwrap");*/
+interface IStudent{
+    id: number;
+    scannerkey: number;
     firstName: string;
     lastName: string;
     
@@ -23,25 +56,25 @@ new Vue({
     el: "#wrapper",
     data:{
         userStudent:{
+            id:1,
+            scannerkey:1,
+            firstName:"Patrick Poul",
+            lastName:"Nielsen",
             courses: [
-                {id:1, name:"Programmering Lokale A"},
-                {id:2, name:"Technology Lokale B"},
-                {id:3, name:"Systemudvikling Lokale C"},
+                {id:1, name:"Programmering"},
+                {id:2, name:"Technology"},
+                {id:3, name:"Systemudvikling"},
             ],
-            firstName:"Lal",
-            lastName:"john",
             currentCourse: {
                 id:1,
-                name:"Programmering Lokale A",
-                time:"Kl. 09.00",
-                
-            students: [
-                {id:1, firstName:"Patrick Poul", lastName:"Nielsen"}
-            ],
-            
-          }
-        },
-
+                lessonId:1,
+                lessonStart:"9.00",
+                lessonEnd:"9.45",
+                courseName:"lal",
+                classRoomName:"Lokale a",
+                students: []
+            }
+          },
     }
 })
 
