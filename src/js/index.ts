@@ -1,56 +1,32 @@
-
-/*import axios, {
+import axios, {
     AxiosResponse,
     AxiosError
 } from "../../node_modules/axios/index"
+
+
 interface IStudent{
-    id: number;
-    firstName: string;
-    lastName: string;
-    attendancy: boolean;
-}
-interface lol{
-    id:number;
-    currentLessonTime: Date;
-}
-interface ITeacher{
-    courses:[
-        {id:number; name:string;}
-    ]
-    firstName:string;
-    lastName:string;
+    id: number
+    scannerkey: number
+    firstName: string
+    lastName: string
+    courses:[]
     currentCourse:{
-        id:number;
-        name:string;
-        students:[
-            {id:number;firstName:string;lastName:string;attendancy:boolean;}
-        ]
+        id:number
+        lessonId:number
+        lessonStart:string
+        lessonEnd:string
+        courseName:string
+        classRoomName:string
+        students:[]
     }
+    
 }
-interface IUserLesson{
-    id:number
-    fkusers:number
-    fklessons:number
-    checkedout:boolean
-    minutesStayed:number
-    minutesLate:number
-}
-interface ICourse{
-    id:number
-    name:string
-    fkusers:number
+interface lal{
+    scannerkey:number;
+    currentLessonTime: Date;
 }
 let baseUrl: string = "https://studinapifinal.azurewebsites.net/api/";
 
-let buttonwrap: HTMLDivElement = <HTMLDivElement> document.getElementById("buttonwrap");*/
-interface IStudent{
-    id: number;
-    scannerkey: number;
-    firstName: string;
-    lastName: string;
-    
-}
-let buttonwrap: HTMLDivElement = <HTMLDivElement> document.getElementById("buttonwrap");
 
 new Vue({
     el: "#wrapper",
@@ -58,23 +34,38 @@ new Vue({
         userStudent:{
             id:1,
             scannerkey:1,
-            firstName:"Patrick Poul",
-            lastName:"Nielsen",
-            courses: [
-                {id:1, name:"Programmering"},
-                {id:2, name:"Technology"},
-                {id:3, name:"Systemudvikling"},
-            ],
+            firstName:"",
+            lastName:"",
+            courses: [],
             currentCourse: {
                 id:1,
                 lessonId:1,
-                lessonStart:"9.00",
-                lessonEnd:"9.45",
-                courseName:"lal",
-                classRoomName:"Lokale a",
+                lessonStart:"",
+                lessonEnd:"",
+                courseName:"",
+                classRoomName:"",
                 students: []
             }
           },
+          sendData:{
+                Scannerkey:1,
+                CurrentLessonTime: new Date(2020, 4, 19, 9, 15, 1, 1);
+          }
+    },
+    methods:{
+        GetStudent:function (){
+            axios.post<IStudent>(baseUrl+"frontendstudent", this.sendData)
+            .then((response: AxiosResponse<IStudent>) => {
+                this.userStudent = response.data
+            })
+            .catch((error: AxiosError) => {
+                alert(error.message)
+            })
+        }
+    },
+    created()
+    {
+        this.GetStudent();
     }
 })
 

@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .row{
+      margin-bottom:20px;
+    }
+    #elcontent h1, p{
+      padding:30px;
+    }
+  </style>
 </head>
 
 <body>
@@ -26,15 +34,13 @@
                       <button type="button" class="btn btn-light btn-lg" href="#">Skema <!-- <span class="sr-only">(current)</span>--></button>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle bg-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Mine Fag
-                        </a>
+                        <a class="nav-link dropdown-toggle bg-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mine Fag</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a v-for="course in userStudent.courses" class="dropdown-item" href="#">{{course.name}}</a>
                         </div>
                     </li>
                 </ul>
-                <button type="button"class="btn btn-light btn-lg" href="#">{{userStudent.firstName}}{{userStudent.lastName}}</button>
+                <button type="button"class="btn" href="#">{{userStudent.firstName}}&nbsp;{{userStudent.lastName}}</button>
             </div>
         </nav>
       </div>
@@ -43,6 +49,7 @@
   <div class="row">
       <div class="col-sm-1"></div>
       <div class="col-sm-9">
+        
       </div>
       <div class="col-sm-1"></div>
   </div>
@@ -50,17 +57,12 @@
       <div class="col-lg-1"></div>
       <div class="col-lg-9">
         <ul class="list-group" id="studentlist">
-            <li class="list-group-item list-group-item-info">
+            <li id="elcontent" class="list-group-item list-group-item-info">
               <div>
-                <a>{{userStudent.firstName}} {{userStudent.lastName}}</a>
+                <h1 style="text-align: center;" class="display-2">{{userStudent.currentCourse.courseName}}</h1>
+                <p style="text-align: center;" class="display-3">{{userStudent.currentCourse.classRoomName}}</p>
+                <p style="text-align: center;" class="display-3">{{userStudent.currentCourse.lessonStart}}-{{userStudent.currentCourse.lessonEnd}}</p>
                 
-                
-                <br>
-                <br>
-                <div>{{userStudent.currentCourse.courseName}}</div>
-                
-                <div id="currentcourse">{{userStudent.currentCourse.lessonStart}}-{{userStudent.currentCourse.lessonEnd}}</div>
-                <div>{{userStudent.currentCourse.classRoomName}}</div>
               </div>
             </li>
         </ul>
